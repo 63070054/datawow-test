@@ -28,7 +28,7 @@ model History {
 
 model User {
   id               Int       @id @default(autoincrement())
-  userName         String
+  name             String
   role             String
   reservedConcerts Concert[]
   History          History[]
