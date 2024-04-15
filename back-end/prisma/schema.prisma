@@ -1,0 +1,35 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Concert {
+  id           Int       @id @default(autoincrement())
+  name         String
+  description  String
+  seat         Int
+  usersReserve User[]
+  History      History[]
+}
+
+model History {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  concert   Concert  @relation(fields: [concertId], references: [id])
+  concertId Int
+  action    String
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  userName         String
+  role             String
+  reservedConcerts Concert[]
+  History          History[]
+}
