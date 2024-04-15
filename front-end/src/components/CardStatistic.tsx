@@ -12,8 +12,8 @@ export default function CardStatistic({ icon, statisticName, amount, twBgColor} 
   return (
     <>
       <div className={`rounded-md flex flex-col justify-center text-center px-2 py-5 gap-2 text-white ${twBgColor}`}>
-        <FontAwesomeIcon icon={icon} className="w-6 aspect-square flex self-center" />
-        <p>{ statisticName }</p>
+        <FontAwesomeIcon icon={icon} className="text-2xl flex self-center" />
+        <p className="text-md">{ statisticName }</p>
         <p className="text-4xl py-4 font-bold">{ amount }</p>
       </div>
     </>

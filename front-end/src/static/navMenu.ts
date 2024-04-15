@@ -1,19 +1,19 @@
 import { NavMenuProps } from "@/components/Navbar/NavMenu";
-import { faHouse } from "@fortawesome/free-solid-svg-icons/faHouse";
+import { faHouse, faInbox, faRepeat } from "@fortawesome/free-solid-svg-icons";
 
 export const menus: NavMenuProps[] = [
   {
     icon: faHouse,
     menuName: "Home",
-    redirectPath: "/home"
+    redirectPath: "/"
   },
   {
-    icon: faHouse,
+    icon: faInbox,
     menuName: "History",
-    redirectPath: "/home"
+    redirectPath: "/history"
   },
   {
-    icon: faHouse,
+    icon: faRepeat,
     menuName: "Switch to user",
     redirectPath: ""
   },

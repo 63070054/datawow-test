@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen min-w-screen flex">
+        <div className="min-h-screen min-w-screen flex md:flex-row flex-col">
           <SideNavBar />
           <div className="px-4 py-8 w-full">
             {children}

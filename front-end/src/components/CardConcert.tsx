@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from "./Button";
 import TextUnderline from "./TextUnderline";
 import CardWithBorder from "./CardWithBorder";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 export interface CardConcertProps {
   concertName: string;
