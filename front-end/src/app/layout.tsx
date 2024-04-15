@@ -20,7 +20,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="min-h-screen min-w-screen flex">
           <SideNavBar />
-          {children}
+          <div className="px-4 py-8 w-full">
+            {children}
+          </div>
         </div>
       </body>
     </html>

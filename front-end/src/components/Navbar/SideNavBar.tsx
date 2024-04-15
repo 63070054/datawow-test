@@ -5,9 +5,9 @@ import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 export default function SideNavBar() {
   return (
     <>
-      <div className="flex flex-col py-16 px-2 shadow-md justify-between">
+      <div className="w-48 flex flex-col py-16 px-2 shadow-md justify-between">
         <span className="flex flex-col gap-4">
-          <p className="text-center h1">
+          <p className="text-center text-3xl font-bold">
             Admin
           </p>
           {menus.map((menu, index) => {
