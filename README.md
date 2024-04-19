@@ -1,5 +1,3 @@
-# datawow-test
-
 # HOW TO RUN
 ## 1.  front-end
 ### 1.1 cd .\front-end\
@@ -58,3 +56,7 @@
 
 # HOW TO RUN UNIT TESTS
 Sorry, I can not finish in time
+
+# BONUS TASK
+1.we can do something like Load balancing and optimize resourced that use a lot of resource in server like image, libraries
+2.for prevent user that call API exact same time we can use message broker like RabbitMQ
