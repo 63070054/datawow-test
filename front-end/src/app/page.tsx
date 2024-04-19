@@ -7,7 +7,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCancel, faMedal } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-export default function Home() {
+export default function HomePage() {
 
   const [activeTab, setActiveTab] = useState<number>(0);
 

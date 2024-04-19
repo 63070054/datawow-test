@@ -3,6 +3,7 @@
 import CardConcert, { Concert } from "@/components/CardConcert";
 import httpRequest from "@/utils/axios/axiosInterceptor";
 import useUser from "@/utils/store/useUser";
+import Swal from "sweetalert2";
 import useSWR from "swr";
 
 export default function AdminOverview() {
@@ -19,7 +20,12 @@ export default function AdminOverview() {
       return result.data || [];
 
     } catch (err) {
-      console.log('error', err)
+      await Swal.fire({
+        title: "Error!",
+        text: "There is error occurred!",
+        icon: "error"
+      });
+      console.log(err)
     }
   }
 
@@ -29,8 +35,6 @@ export default function AdminOverview() {
   if (!data && isLoading) return <div>Loading...</div>;
 
   const concerts = data as Concert[];
-
-  console.log("concerts", concerts)
 
   return (
     <>

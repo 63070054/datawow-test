@@ -2,6 +2,7 @@
 import TableHistory, { History } from "@/components/Table/TableHistory";
 import httpRequest from "@/utils/axios/axiosInterceptor";
 import useUser from "@/utils/store/useUser";
+import Swal from "sweetalert2";
 import useSWR from "swr";
 
 export default function HistoryPage() {
@@ -18,7 +19,12 @@ export default function HistoryPage() {
       return result.data || [];
 
     } catch (err) {
-      console.log('error', err)
+      await Swal.fire({
+        title: "Error!",
+        text: "There is error occurred!",
+        icon: "error"
+      });
+      console.log(err)
     }
   }
 

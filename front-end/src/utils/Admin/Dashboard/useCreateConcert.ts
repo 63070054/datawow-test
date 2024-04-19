@@ -48,10 +48,13 @@ export default function useCreateConcert({ encodedUser, setActiveTab }: useCreat
 
       await setActiveTab(0)
 
-      console.log("result", result)
     } catch (err) {
-
-      console.log("error", err)
+      await Swal.fire({
+        title: "Error!",
+        text: "There is error occurred!",
+        icon: "error"
+      });
+      console.log(err)
     }
 
   }

@@ -18,11 +18,9 @@ export class ConcertService {
 
   async createConcert(concert: Concert): Promise<any> {
     try {
-      const status = await this.prisma.concert.create({
+      await this.prisma.concert.create({
         data: concert
       })
-
-      console.log('status: ' + status)
 
       return {
         status: HttpStatus.OK

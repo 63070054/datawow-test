@@ -35,6 +35,11 @@ export default function useActionConcert({user, encodedUser}: useActionConcertPr
       await mutate("fetchConcerts")
 
     } catch (err) { 
+      await Swal.fire({
+        title: "Error!",
+        text: "There is error occurred!",
+        icon: "error"
+      });
       console.log(err)
      }
   }
