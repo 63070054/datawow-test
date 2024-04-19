@@ -1,4 +1,6 @@
 import { formatDateDDMMYYYwithTime } from "@/utils/formatDate"
+import { User } from "@/utils/store/useUser";
+import { Concert } from "../CardConcert";
 
 export interface TableHistoryProps {
   histories: History[]
@@ -6,8 +8,8 @@ export interface TableHistoryProps {
 
 export interface History {
   date: Date;
-  userName: string;
-  concertName: string;
+  user: User;
+  concert: Concert;
   action: string;
 }
 
@@ -44,10 +46,10 @@ export default function TableHistory({histories}: TableHistoryProps) {
           histories.map((history, index) => {
             return (
               <tr key={index}>
-                <td className={`${defaultRowCss}`}>{formatDateDDMMYYYwithTime(new Date())}</td>
-                <td className={`${defaultRowCss}`}>John Doe</td>
-                <td className={`${defaultRowCss}`}>Concert 1</td>
-                <td className={`${defaultRowCss}`}>Cancel</td>
+                <td className={`${defaultRowCss}`}>{formatDateDDMMYYYwithTime(new Date(history?.date))}</td>
+                <td className={`${defaultRowCss}`}>{ history?.user?.name }</td>
+              <td className={`${defaultRowCss}`}>{ history?.concert?.name }</td>
+                <td className={`${defaultRowCss}`}>{history?.action}</td>
               </tr>
             )
           })

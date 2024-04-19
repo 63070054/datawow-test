@@ -1,9 +1,11 @@
 'use client'
 
-import { ReactNode, useState } from "react";
+import { Dispatch, ReactNode, useState } from "react";
 
 interface TabProps {
   tabs: TabMenu[];
+  activeTab: number;
+  setActiveTab: Dispatch<number>;
 }
 
 export interface TabMenu {
@@ -11,9 +13,7 @@ export interface TabMenu {
   content: ReactNode;
 }
 
-export default function Tab({ tabs }: TabProps) {
-
-  const [activeTab, setActiveTab] = useState<number>(0);
+export default function Tab({ tabs, activeTab, setActiveTab }: TabProps) {
   
   return (
     <>

@@ -1,12 +1,15 @@
-'use server'
+'use client'
 import AdminCreate from "@/components/Admin/Dashboard/AdminCreate";
 import AdminOverview from "@/components/Admin/Dashboard/AdminOverview";
 import CardStatistic from "@/components/CardStatistic";
 import Tab, { TabMenu } from "@/components/Tab";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faCancel, faMedal } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
-export default async function Home() {
+export default function Home() {
+
+  const [activeTab, setActiveTab] = useState<number>(0);
 
   const tabData: TabMenu[] = [
     {
@@ -15,9 +18,10 @@ export default async function Home() {
     },
     {
       tabName: "Create",
-      content: <AdminCreate />
+      content: <AdminCreate setActiveTab={setActiveTab} />
     },
   ]
+
 
   return (
     <>
@@ -27,7 +31,7 @@ export default async function Home() {
           <CardStatistic icon={faMedal} statisticName="Reserve" amount={120} twBgColor="bg-green-500" />
           <CardStatistic icon={faCancel} statisticName="Cancel" amount={12} twBgColor="bg-red-500" />
         </div>
-        <Tab tabs={tabData} />
+        <Tab tabs={tabData} activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
     </>
   );

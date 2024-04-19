@@ -2,15 +2,27 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import axios from "axios"
+import httpRequest from '@/utils/axios/axiosInterceptor';
+import useUser from '@/utils/store/useUser';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { Dispatch } from 'react';
 
-export default function useCreateConcert() {
+interface useCreateConcertProps {
+  encodedUser: string;
+  setActiveTab: Dispatch<number>;
+}
+
+export default function useCreateConcert({ encodedUser, setActiveTab }: useCreateConcertProps){
 
   const schema = yup
     .object()
     .shape({
-      concertName: yup.string().required("Please input concert name"),
-      concertDescription: yup.string().required("Please input description"),
-      amountSeats: yup.number().required("Please input seats"),
+      name: yup.string().required("Please input concert name"),
+      description: yup.string().required("Please input description"),
+      seat: yup.number().required("Please input seats"),
     })
     .required();
 
@@ -18,8 +30,30 @@ export default function useCreateConcert() {
     resolver: yupResolver(schema),
   });
 
-  const createConcert = (data: any) => {
-    console.log("data", data)
+
+
+  const createConcert = async (data: any) => {
+    try {
+      const result = await httpRequest.post("/concert", data, {
+        headers: {
+          authorization: encodedUser,
+        },
+      })
+      await Swal.fire({
+        title: "Success!",
+        text: "You have created the new concert!",
+        icon: "success"
+      });
+
+
+      await setActiveTab(0)
+
+      console.log("result", result)
+    } catch (err) {
+
+      console.log("error", err)
+    }
+
   }
 
   return {

@@ -31,5 +31,5 @@ model User {
   name             String
   role             String
   reservedConcerts Concert[]
-  History          History[]
+  histories          History[]
 }

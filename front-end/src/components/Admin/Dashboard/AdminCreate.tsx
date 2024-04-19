@@ -4,14 +4,24 @@ import CardWithBorder from "@/components/CardWithBorder";
 import Input from "@/components/Input";
 import TextUnderline from "@/components/TextUnderline";
 import useCreateConcert from "@/utils/Admin/Dashboard/useCreateConcert";
+import useUser from "@/utils/store/useUser";
 import { faSave, faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
+import { Dispatch } from "react";
 
-export default function AdminCreate() {
+interface AdminCreateProps {
+  setActiveTab: Dispatch<number>;
+}
 
-  const { register, handleSubmit, errors, createConcert } = useCreateConcert();
+export default function AdminCreate({ setActiveTab }: AdminCreateProps) {
 
-  console.log("errors", errors)
+  const { getEncodedUser } = useUser();
+
+  const { register, handleSubmit, errors, createConcert } = useCreateConcert({
+    encodedUser: getEncodedUser(),
+    setActiveTab: setActiveTab
+  });
 
   return (
     <>
@@ -19,10 +29,10 @@ export default function AdminCreate() {
         <form onSubmit={handleSubmit(createConcert)} className="flex flex-col gap-4">
           <TextUnderline text="Create" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input label="Concert Name" register={register("concertName")} placeholder="Please input concert name" showErr={!!errors.concertName} errMsg={errors.concertName?.message}  />
-            <Input label="Total of seat" register={register("amountSeats")} endIcon={faUser} type="number" showErr={!!errors.amountSeats} errMsg={errors.amountSeats?.message} defaultValue={0} />
+            <Input label="Concert Name" register={register("name")} placeholder="Please input concert name" showErr={!!errors.name} errMsg={errors.name?.message}  />
+            <Input label="Total of seat" register={register("seat")} endIcon={faUser} type="number" showErr={!!errors.seat} errMsg={errors.seat?.message} defaultValue={0} />
           </div>
-          <Input label="Total of seat" register={register("concertDescription")} multiline rows={5} placeholder="Please input description" showErr={!!errors.concertDescription} errMsg={errors.concertDescription?.message} />
+          <Input label="Concert description" register={register("description")} multiline rows={5} placeholder="Please input description" showErr={!!errors.description} errMsg={errors.description?.message} />
           <Button type="submit" className="w-full md:w-fit flex self-end">
             <div className="w-full flex gap-2 justify-center items-center">
               <FontAwesomeIcon icon={faSave} />

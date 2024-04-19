@@ -39,7 +39,7 @@ export default function Input(props: InputProps) {
     <div className="flex flex-col gap-2">
       <p className="text-lg pb-2">{label}</p>
       <div className="relative">
-        <InputElement value={defaultValue} className="px-3 w-full py-2 border rounded-md text-xs" {...register} placeholder={placeholder} type={type} rows={(props as InputMultilineProps)?.rows} />
+        <InputElement defaultValue={defaultValue} className="px-3 w-full py-2 border rounded-md text-xs" {...register} placeholder={placeholder} type={type} rows={(props as InputMultilineProps)?.rows} />
         {endIcon && (
           <FontAwesomeIcon icon={endIcon} className="absolute top-1/2 -translate-y-1/2 right-4 text-xs" />
         )}
