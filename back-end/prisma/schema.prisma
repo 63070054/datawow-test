@@ -19,9 +19,9 @@ model Concert {
 model History {
   id        Int      @id @default(autoincrement())
   date      DateTime
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
-  concert   Concert  @relation(fields: [concertId], references: [id])
+  concert   Concert  @relation(fields: [concertId], references: [id], onDelete: Cascade)
   concertId Int
   action    String
 }
@@ -31,5 +31,5 @@ model User {
   name             String
   role             String
   reservedConcerts Concert[]
-  histories          History[]
+  histories        History[]
 }

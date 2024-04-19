@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, Req, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, Req, UseInterceptors } from '@nestjs/common';
 import { ConcertService } from './concert.service';
 import { Concert } from '@prisma/client';
 import { HttpRequestInterceptor } from 'src/interceptor/HttpRequestInterceptor';
@@ -22,6 +22,17 @@ export class ConcertController {
   async getConcerts(@Req() req): Promise<any> {
     if (req.user.role === "admin") {
       return await this.appService.getConcerts();
+    } else {
+      return "No permission"
+    }
+  }
+
+  @Delete(":id")
+  @UseInterceptors(HttpRequestInterceptor)
+  async deleteConcert(@Req() req, @Param('id') id: string): Promise<any> {
+    if (req.user.role === "admin") {
+      const concertId = parseInt(id);
+      return await this.appService.deleteConcert(concertId);
     } else {
       return "No permission"
     }

@@ -8,7 +8,7 @@ import useUser from "@/utils/store/useUser";
 import { faSave, faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import { Dispatch } from "react";
+import { Dispatch, useEffect } from "react";
 
 interface AdminCreateProps {
   setActiveTab: Dispatch<number>;
@@ -16,12 +16,16 @@ interface AdminCreateProps {
 
 export default function AdminCreate({ setActiveTab }: AdminCreateProps) {
 
-  const { getEncodedUser } = useUser();
+  const { getEncodedUser, user } = useUser();
 
   const { register, handleSubmit, errors, createConcert } = useCreateConcert({
     encodedUser: getEncodedUser(),
     setActiveTab: setActiveTab
   });
+
+  useEffect(() => {
+    if (user.role === "user") return setActiveTab(0)
+  }, [user])
 
   return (
     <>

@@ -24,9 +24,8 @@ export default function CardConcert(concert: Concert) {
   const { name, description, seat } = concert
 
   const { user, getEncodedUser } = useUser();
-  const router = useRouter();
 
-  const { reserveConcert, cancelConcert } = useActionConcert({
+  const { reserveConcert, cancelConcert, deleteConcert } = useActionConcert({
     user,
     encodedUser: getEncodedUser()
   });
@@ -67,14 +66,14 @@ export default function CardConcert(concert: Concert) {
     <CardWithBorder>
       <div className="flex flex-col gap-4">
         <TextUnderline text={name} />
-        <p className="py-2">{description}</p>
+        <p className="py-2" style={{wordBreak: "break-word"}}>{description}</p>
         <div className="flex justify-between">
           <div className="flex gap-2 items-center">
             <FontAwesomeIcon icon={faUser} className="w-4 aspect-square" />
             <p>{seat}</p>
           </div>
           {user.role === "admin" ? (
-            <Button variant="error">
+            <Button variant="error" onClick={() => deleteConcert(concert)}>
               <FontAwesomeIcon icon={faTrash} className="w-4 aspect-square" />
               <p>Delete</p>
             </Button>

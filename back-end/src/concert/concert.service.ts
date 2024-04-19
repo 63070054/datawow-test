@@ -32,4 +32,22 @@ export class ConcertService {
     }
   }
 
+  async deleteConcert(concertId: number): Promise<any> {
+    try {
+      await this.prisma.concert.delete({
+        where: {
+          id: concertId,
+        },
+      });
+
+      return {
+        status: HttpStatus.OK
+      }
+
+    } catch (err) {
+
+      throw new Error(err);
+    }
+  }
+
 }

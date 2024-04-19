@@ -33,6 +33,7 @@ export default function useActionConcert({user, encodedUser}: useActionConcertPr
       });
 
       await mutate("fetchConcerts")
+      await mutate("fetchHistories")
 
     } catch (err) { 
       await Swal.fire({
@@ -65,13 +66,53 @@ export default function useActionConcert({user, encodedUser}: useActionConcertPr
       });
 
       await mutate("fetchConcerts")
+      await mutate("fetchHistories")
     } catch (err) {
+      await Swal.fire({
+        title: "Error!",
+        text: "There is error occurred!",
+        icon: "error"
+      });
       console.log(err)
     }
   }
 
-  const deleteConcert = async () => {
+  const deleteConcert = async (concert: CardConcertProps) => {
 
+    const { isConfirmed } = await Swal.fire({
+      title: `Do you want to delete concert ${concert.name} ?`,
+      text: 'You will not be able to recover this concert!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+    });
+
+    if (isConfirmed) { 
+      try {
+        await httpRequest.delete(`concert/${concert.id}`, {
+          headers: {
+            Authorization: encodedUser
+          }
+        })
+
+        await Swal.fire({
+          title: "Success!",
+          text: "You have deleted the concert!",
+          icon: "success"
+        });
+
+        await mutate("fetchConcerts")
+        await mutate("fetchHistories")
+      } catch (err) {
+        await Swal.fire({
+          title: "Error!",
+          text: "There is error occurred!",
+          icon: "error"
+        });
+        console.log(err)
+      }
+     }
   }
   
   return {

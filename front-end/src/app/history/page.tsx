@@ -8,7 +8,7 @@ import useSWR from "swr";
 export default function HistoryPage() {
 
   const { getEncodedUser } = useUser()
-  const fetchConcerts = async () => {
+  const fetchHistories = async () => {
     try {
       const result = await httpRequest.get("/history", {
         headers: {
@@ -28,7 +28,7 @@ export default function HistoryPage() {
     }
   }
 
-  const { data, error, isLoading } = useSWR<History[]>('fetchHistories', fetchConcerts)
+  const { data, error, isLoading } = useSWR<History[]>('fetchHistories', fetchHistories)
 
   if (error) return <>error</>
   if (!data && isLoading) return <div>Loading...</div>;

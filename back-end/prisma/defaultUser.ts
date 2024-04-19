@@ -1,12 +1,12 @@
-import { PrismaClient, User } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
 async function main() {
   // Define default user data
-  const defaultUser: User = {
+  const defaultUser = {
     id: 1,
-    name: "Sara John",
+    name: "Sarah John",
     role: "admin"
   }
 

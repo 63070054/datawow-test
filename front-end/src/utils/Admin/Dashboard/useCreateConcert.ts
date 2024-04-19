@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Dispatch } from 'react';
+import { mutate } from 'swr';
 
 interface useCreateConcertProps {
   encodedUser: string;
@@ -45,6 +46,8 @@ export default function useCreateConcert({ encodedUser, setActiveTab }: useCreat
         icon: "success"
       });
 
+
+      mutate("fetchConcerts")
 
       await setActiveTab(0)
 
