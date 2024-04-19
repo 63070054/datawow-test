@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Query, Req, UseInterceptors } from '@nestjs/common';
 import { ConcertService } from './concert.service';
 import { Concert } from '@prisma/client';
-import { HttpRequestInterceptor } from 'src/interceotor/HttpRequestInterceptor';
+import { HttpRequestInterceptor } from 'src/interceptor/HttpRequestInterceptor';
 
 @Controller("concert")
 export class ConcertController {

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Query, Req, UseInterceptors } from '@nestjs/common';
 import { HistoryService } from './history.service';
 import { Concert, History } from '@prisma/client';
-import { HttpRequestInterceptor } from 'src/interceotor/HttpRequestInterceptor';
+import { HttpRequestInterceptor } from 'src/interceptor/HttpRequestInterceptor';
 
 @Controller("history")
 export class HistoryController {
